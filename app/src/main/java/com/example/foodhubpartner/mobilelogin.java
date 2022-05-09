@@ -23,6 +23,14 @@ public class mobilelogin extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_mobilelogin);
+
+        // try block to hide Action bar
+        try {
+            this.getSupportActionBar().hide();
+        }
+        // catch block to handle NullPointerException
+        catch (NullPointerException e) {
+        }
         setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
         next = findViewById(R.id.next);
         mobileno = findViewById(R.id.phno);

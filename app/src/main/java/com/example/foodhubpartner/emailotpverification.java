@@ -26,6 +26,14 @@ public class emailotpverification extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_emailotpverification);
+        // try block to hide Action bar
+        try {
+            this.getSupportActionBar().hide();
+        }
+        // catch block to handle NullPointerException
+        catch (NullPointerException e) {
+        }
+
         setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
         Bundle bundle = getIntent().getExtras();
         emailinfo = findViewById(R.id.email_info);
@@ -111,7 +119,7 @@ public class emailotpverification extends AppCompatActivity {
                         h.postDelayed(new Runnable() {
                             @Override
                             public void run() {
-                                Intent intent = new Intent(emailotpverification.this,demo.class);
+                                Intent intent = new Intent(emailotpverification.this,partner_main_screens.class);
                                 emaillogin.el.finish();
                                 signin.sign.finish();
                                 startActivity(intent);

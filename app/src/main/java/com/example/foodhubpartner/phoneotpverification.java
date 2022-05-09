@@ -27,6 +27,14 @@ public class phoneotpverification extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_phoneotpverification);
+        // try block to hide Action bar
+        try {
+            this.getSupportActionBar().hide();
+        }
+        // catch block to handle NullPointerException
+        catch (NullPointerException e) {
+        }
+
         setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
         Bundle bundle = getIntent().getExtras();
         phnoinfo = findViewById(R.id.phno_info);
@@ -112,7 +120,7 @@ public class phoneotpverification extends AppCompatActivity {
                         h.postDelayed(new Runnable() {
                             @Override
                             public void run() {
-                                     Intent intent = new Intent(phoneotpverification.this,demo.class);
+                                     Intent intent = new Intent(phoneotpverification.this,partner_main_screens.class);
                                      mobilelogin.ml.finish();
                                      signin.sign.finish();
                                      startActivity(intent);

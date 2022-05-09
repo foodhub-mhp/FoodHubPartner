@@ -3,15 +3,28 @@
   <component name="DesignSurface">
     <option name="filePathToZoomLevelMap">
       <map>
+        <entry key="..\:/Users/kamala/AndroidStudioProjects/FoodHubPartner/app/src/main/res/drawable/circle.xml" value="0.165" />
         <entry key="..\:/Users/kamala/AndroidStudioProjects/FoodHubPartner/app/src/main/res/drawable/ic_baseline_email_24.xml" value="0.163" />
+        <entry key="..\:/Users/kamala/AndroidStudioProjects/FoodHubPartner/app/src/main/res/drawable/menu_24.xml" value="0.165" />
+        <entry key="..\:/Users/kamala/AndroidStudioProjects/FoodHubPartner/app/src/main/res/drawable/rect_shape1.xml" value="0.165" />
         <entry key="..\:/Users/kamala/AndroidStudioProjects/FoodHubPartner/app/src/main/res/drawable/round_back_blue_10_10.xml" value="0.165" />
+        <entry key="..\:/Users/kamala/AndroidStudioProjects/FoodHubPartner/app/src/main/res/drawable/shop_24.xml" value="0.165" />
         <entry key="..\:/Users/kamala/AndroidStudioProjects/FoodHubPartner/app/src/main/res/layout/activity_demo.xml" value="0.23541666666666666" />
         <entry key="..\:/Users/kamala/AndroidStudioProjects/FoodHubPartner/app/src/main/res/layout/activity_emaillogin.xml" value="0.2375" />
         <entry key="..\:/Users/kamala/AndroidStudioProjects/FoodHubPartner/app/src/main/res/layout/activity_emailotpverification.xml" value="0.25" />
         <entry key="..\:/Users/kamala/AndroidStudioProjects/FoodHubPartner/app/src/main/res/layout/activity_main.xml" value="0.24635416666666668" />
         <entry key="..\:/Users/kamala/AndroidStudioProjects/FoodHubPartner/app/src/main/res/layout/activity_mobilelogin.xml" value="0.24615384615384617" />
+        <entry key="..\:/Users/kamala/AndroidStudioProjects/FoodHubPartner/app/src/main/res/layout/activity_partner_main_screens.xml" value="0.25" />
         <entry key="..\:/Users/kamala/AndroidStudioProjects/FoodHubPartner/app/src/main/res/layout/activity_phoneotpverification.xml" value="0.25" />
+        <entry key="..\:/Users/kamala/AndroidStudioProjects/FoodHubPartner/app/src/main/res/layout/activity_registration.xml" value="0.25" />
+        <entry key="..\:/Users/kamala/AndroidStudioProjects/FoodHubPartner/app/src/main/res/layout/activity_shop_register.xml" value="0.25" />
         <entry key="..\:/Users/kamala/AndroidStudioProjects/FoodHubPartner/app/src/main/res/layout/activity_signin.xml" value="0.25" />
+        <entry key="..\:/Users/kamala/AndroidStudioProjects/FoodHubPartner/app/src/main/res/layout/fragment_payment_initial1.xml" value="0.25" />
+        <entry key="..\:/Users/kamala/AndroidStudioProjects/FoodHubPartner/app/src/main/res/layout/fragment_shop_initial1.xml" value="0.25" />
+        <entry key="..\:/Users/kamala/AndroidStudioProjects/FoodHubPartner/app/src/main/res/layout/imagepicker_dialog.xml" value="0.25" />
+        <entry key="..\:/Users/kamala/AndroidStudioProjects/FoodHubPartner/app/src/main/res/layout/registration_dialog.xml" value="0.25" />
+        <entry key="..\:/Users/kamala/AndroidStudioProjects/FoodHubPartner/app/src/main/res/layout/timepicker_dialog.xml" value="0.25" />
+        <entry key="..\:/Users/kamala/AndroidStudioProjects/FoodHubPartner/app/src/main/res/menu/bootom_nav_menu.xml" value="0.25" />
       </map>
     </option>
   </component>

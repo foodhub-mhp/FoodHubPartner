@@ -22,6 +22,14 @@ public class emaillogin extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_emaillogin);
+        // try block to hide Action bar
+        try {
+            this.getSupportActionBar().hide();
+        }
+        // catch block to handle NullPointerException
+        catch (NullPointerException e) {
+        }
+
         setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
         emailid = findViewById(R.id.emailid);
         next = findViewById(R.id.next);

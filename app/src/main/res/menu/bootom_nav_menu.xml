@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+    <item
+        android:id="@+id/shop"
+        android:icon="@drawable/shop_24"
+        android:title="Shop" />
+    <item
+        android:id="@+id/menu"
+        android:icon="@drawable/menu_24"
+        android:title="Menu" />
+    <item
+        android:id="@+id/payments"
+        android:icon="@drawable/payment_24"
+        android:title="Payments" />
+    <item
+        android:id="@+id/profile"
+        android:icon="@drawable/profile_24"
+        android:title="profile" />
+</menu>
