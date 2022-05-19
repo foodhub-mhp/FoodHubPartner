@@ -3,6 +3,8 @@
   <component name="DesignSurface">
     <option name="filePathToZoomLevelMap">
       <map>
+        <entry key="..\:/Users/kamala/AndroidStudioProjects/FoodHubPartner/app/src/main/res/drawable/add1.xml" value="0.177" />
+        <entry key="..\:/Users/kamala/AndroidStudioProjects/FoodHubPartner/app/src/main/res/drawable/call24.xml" value="0.177" />
         <entry key="..\:/Users/kamala/AndroidStudioProjects/FoodHubPartner/app/src/main/res/drawable/circle.xml" value="0.165" />
         <entry key="..\:/Users/kamala/AndroidStudioProjects/FoodHubPartner/app/src/main/res/drawable/ic_baseline_email_24.xml" value="0.163" />
         <entry key="..\:/Users/kamala/AndroidStudioProjects/FoodHubPartner/app/src/main/res/drawable/menu_24.xml" value="0.165" />
@@ -19,6 +21,7 @@
         <entry key="..\:/Users/kamala/AndroidStudioProjects/FoodHubPartner/app/src/main/res/layout/activity_registration.xml" value="0.25" />
         <entry key="..\:/Users/kamala/AndroidStudioProjects/FoodHubPartner/app/src/main/res/layout/activity_shop_register.xml" value="0.25" />
         <entry key="..\:/Users/kamala/AndroidStudioProjects/FoodHubPartner/app/src/main/res/layout/activity_signin.xml" value="0.25" />
+        <entry key="..\:/Users/kamala/AndroidStudioProjects/FoodHubPartner/app/src/main/res/layout/fragment_partner_profile.xml" value="0.25" />
         <entry key="..\:/Users/kamala/AndroidStudioProjects/FoodHubPartner/app/src/main/res/layout/fragment_payment_initial1.xml" value="0.25" />
         <entry key="..\:/Users/kamala/AndroidStudioProjects/FoodHubPartner/app/src/main/res/layout/fragment_shop_initial1.xml" value="0.25" />
         <entry key="..\:/Users/kamala/AndroidStudioProjects/FoodHubPartner/app/src/main/res/layout/imagepicker_dialog.xml" value="0.25" />

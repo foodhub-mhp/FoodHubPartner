@@ -13,13 +13,7 @@
             android:name=".Shop_register"
             android:exported="false" />
         <activity
-            android:name=".partner_main_screens"
-            android:exported="false" />
-        <activity
             android:name=".registration"
-            android:exported="false" />
-        <activity
-            android:name=".emailotpverification"
             android:exported="false" />
         <activity
             android:name=".phoneotpverification"
@@ -32,6 +26,9 @@
             android:exported="false" />
         <activity
             android:name=".signin"
+            android:exported="false" />
+        <activity
+            android:name=".partner_main_screens"
             android:exported="false" />
         <activity
             android:name=".MainActivity"

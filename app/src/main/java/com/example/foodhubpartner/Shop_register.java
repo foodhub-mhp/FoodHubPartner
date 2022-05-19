@@ -11,17 +11,25 @@ import android.graphics.Bitmap;
 import android.net.Uri;
 import android.os.Bundle;
 import android.provider.MediaStore;
+import android.util.Patterns;
 import android.view.LayoutInflater;
 import android.view.View;
+import android.widget.Button;
 import android.widget.ImageButton;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.TimePicker;
+import android.widget.Toast;
 
 import com.google.android.material.textfield.TextInputEditText;
 
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
+
 public class Shop_register extends AppCompatActivity {
-    TextInputEditText from_time, to_time;
-    String fromtime, totime;
+    TextInputEditText from_time, to_time,shop_name,shop_address,shop_contact_no,shop_email_id,shop_Upi_Id,shop_Gst_no;
+    Button shop_register;
+    String fromtime="", totime="";
     ImageView shopimage;
     Uri imageUri;
     int pic_id = 123;
@@ -41,9 +49,16 @@ public class Shop_register extends AppCompatActivity {
         }
 
         //setting up variable id's
+        shop_name = findViewById(R.id.shopname);
+        shop_address = findViewById(R.id.shop_address);
+        shop_contact_no = findViewById(R.id.shop_contact_no);
+        shop_email_id = findViewById(R.id.shop_email_Id);
+        shop_Upi_Id = findViewById(R.id.shop_UPI_Id);
+        shop_Gst_no = findViewById(R.id.shop_Gst_No);
         from_time = findViewById(R.id.from_time);
         to_time = findViewById(R.id.to_time);
         shopimage = findViewById(R.id.shop_image);
+        shop_register = findViewById(R.id.shop_register);
 
         //From Time Listener
         from_time.setOnClickListener(v -> {
@@ -205,6 +220,108 @@ public class Shop_register extends AppCompatActivity {
                     imagepicker.dismiss();
                 }
             });
+        });
+
+        //register button listener
+        shop_register.setOnClickListener(v->{
+            String shopname,shopcontactno,shopemailid,shopaddress,shopupiid,shopgstno;
+
+            shopname = shop_name.getText().toString();
+            shopcontactno = shop_contact_no.getText().toString();
+            shopemailid = shop_email_id.getText().toString();
+            shopaddress = shop_address.getText().toString();
+            shopupiid = shop_Upi_Id.getText().toString();
+            shopgstno = shop_Gst_no.getText().toString();
+
+            //validating required fields
+            if(!shopname.isEmpty() && !shopcontactno.isEmpty() && !shopemailid.isEmpty() && !shopaddress.isEmpty() && !shopupiid.isEmpty() && !shopgstno.isEmpty() && !fromtime.isEmpty() && !totime.isEmpty())
+            {
+                int flag =0;
+                if (!shopemailid.isEmpty() && Patterns.EMAIL_ADDRESS.matcher(shopemailid).matches()) {
+                    flag += 1;
+                    System.out.println("email");
+                } else {
+                    shop_email_id.setError("Invalid Email");
+                }
+
+                if (!shopcontactno.isEmpty() && Patterns.PHONE.matcher(shopcontactno).matches() && shopcontactno.length() == 10) {
+                    flag += 1;
+                    System.out.println("phone no");
+                } else {
+                    shop_contact_no.setError("Invalid Phone no");
+                }
+
+                if(shopaddress.length()<20)
+                {
+                    shop_address.setError("Address must contains atleast 20 characters/letters");
+                }
+                else{
+                    flag++;
+                    System.out.println("address");
+                }
+                //validating UPI Id
+                Pattern p = Pattern.compile("^(.+)@(.+)$");
+                Matcher m = p.matcher(shopupiid);
+                boolean b = m.matches();
+                if(b)
+                {
+                   flag++;
+                    System.out.println("UPI");
+                }
+                else
+                {
+                    shop_Upi_Id.setError("Invalid UPI id");
+                }
+                //validating GST No
+                Pattern p2 = Pattern.compile("^[0-9]{2}[A-Z]{5}[0-9]{4}" + "[A-Z]{1}[1-9A-Z]{1}" + "Z[0-9A-Z]{1}$");
+                Matcher m2 = p2.matcher(shopgstno);
+                boolean b2 = m2.matches();
+                if(b2)
+                {
+                    flag++;
+                    System.out.println("GST");
+                }
+                else
+                {
+                    shop_Gst_no.setError("Invalid GST No");
+                }
+                if(flag==5)
+                    Toast.makeText(this, "Successfully Registered", Toast.LENGTH_SHORT).show();
+            }
+            else{
+                if(shopname.isEmpty())
+                {
+                    shop_name.setError("This Field must required");
+                }
+                if(shopcontactno.isEmpty())
+                {
+                    shop_contact_no.setError("This Field must required");
+                }
+                if(shopemailid.isEmpty())
+                {
+                    shop_email_id.setError("This Field must required");
+                }
+                if(shopaddress.isEmpty())
+                {
+                    shop_address.setError("This Field must required");
+                }
+                if(shopupiid.isEmpty())
+                {
+                    shop_Upi_Id.setError("This Field must required");
+                }
+                if(shopgstno.isEmpty())
+                {
+                    shop_Gst_no.setError("This Field must required");
+                }
+                if(from_time.getText().toString().isEmpty() && to_time.getText().toString().isEmpty()){
+                    from_time.setError("This Field must required");
+                    to_time.setError("This Field must required");
+                }
+                else{
+                    from_time.setError(null);
+                    to_time.setError(null);
+                }
+            }
         });
     }
 

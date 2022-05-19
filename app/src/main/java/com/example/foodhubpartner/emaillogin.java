@@ -15,8 +15,8 @@ import android.widget.Toast;
 import com.google.android.material.textfield.TextInputEditText;
 
 public class emaillogin extends AppCompatActivity {
-    TextInputEditText emailid;
-    Button next;
+    TextInputEditText emailid,emailpassword;
+    Button login;
     public static Activity el;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -32,15 +32,16 @@ public class emaillogin extends AppCompatActivity {
 
         setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
         emailid = findViewById(R.id.emailid);
-        next = findViewById(R.id.next);
+        emailpassword = findViewById(R.id.emailpassword);
+        login = findViewById(R.id.emaillogin);
         el = this;
-        next.setOnClickListener(new View.OnClickListener() {
+        login.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 String email = emailid.getText().toString();
                 if (!email.isEmpty() && Patterns.EMAIL_ADDRESS.matcher(email).matches()) {
                     //Toast.makeText(emaillogin.this, "Email "+email+"Verified !", Toast.LENGTH_SHORT).show();
-                    Intent intent = new Intent(emaillogin.this,emailotpverification.class);
+                    Intent intent = new Intent(emaillogin.this,partner_main_screens.class);
                     intent.putExtra("emailid",email);
                     startActivity(intent);
                 } else {

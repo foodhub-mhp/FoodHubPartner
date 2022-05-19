@@ -1,18 +1,18 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="#F3FBFF"
-    tools:context=".mobilelogin">
+    tools:context=".mobilelogin"
+    android:orientation="vertical">
 
     <LinearLayout
         android:id="@+id/icontitle"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignParentTop="true"
-        android:layout_centerInParent="true"
+        android:layout_gravity="center"
         android:layout_marginTop="37dp"
         android:background="#F3FBFF"
         android:orientation="horizontal">
@@ -54,6 +54,7 @@
         android:layout_marginStart="10dp"
         android:layout_marginEnd="10dp"
         android:elevation="20dp"
+        android:layout_marginTop="20dp"
         app:cardBackgroundColor="@color/white"
         app:cardCornerRadius="21dp">
 
@@ -151,4 +152,4 @@
                 android:textStyle="bold" />
         </LinearLayout>
     </androidx.cardview.widget.CardView>
-</RelativeLayout>
+</LinearLayout>

@@ -14,7 +14,7 @@
         android:layout_alignParentTop="true"
         android:layout_centerHorizontal="true"
         android:layout_gravity="center_horizontal"
-        android:layout_marginTop="37dp"
+        android:layout_marginTop="30dp"
         android:background="#F3FBFF"
         android:orientation="horizontal">
 
@@ -51,10 +51,10 @@
         android:id="@+id/card"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_below="@id/icontitle"
         android:layout_centerInParent="true"
         android:layout_marginStart="10dp"
         android:layout_marginEnd="10dp"
-        android:layout_below="@id/icontitle"
         android:elevation="20dp"
         app:cardBackgroundColor="@color/white"
         app:cardCornerRadius="21dp">
@@ -121,7 +121,7 @@
                 android:layout_marginEnd="20dp"
                 android:gravity="center"
                 android:orientation="horizontal"
-                android:weightSum="4">
+                android:weightSum="6">
 
                 <EditText
                     android:id="@+id/otpET1"
@@ -185,8 +185,56 @@
                     android:textColor="#000000"
                     android:textSize="15sp"
                     android:textStyle="bold" />
+
+                <EditText
+                    android:id="@+id/otpET5"
+                    android:layout_width="50dp"
+                    android:layout_height="50dp"
+                    android:layout_marginEnd="10dp"
+                    android:layout_weight="1"
+                    android:background="@drawable/round_back_blue_10_10"
+                    android:gravity="center"
+                    android:inputType="number"
+                    android:maxLength="1"
+                    android:maxLines="1"
+                    android:textColor="#000000"
+                    android:textSize="15sp"
+                    android:textStyle="bold" />
+
+                <EditText
+                    android:id="@+id/otpET6"
+                    android:layout_width="50dp"
+                    android:layout_height="50dp"
+                    android:layout_marginEnd="10dp"
+                    android:layout_weight="1"
+                    android:background="@drawable/round_back_blue_10_10"
+                    android:gravity="center"
+                    android:inputType="number"
+                    android:maxLength="1"
+                    android:maxLines="1"
+                    android:textColor="#000000"
+                    android:textSize="15sp"
+                    android:textStyle="bold" />
             </LinearLayout>
 
+            <!--
+            <com.chaos.view.PinView
+                android:id="@+id/otp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                app:itemCount="6"
+                android:gravity="center_horizontal"
+                android:layout_gravity="center_horizontal"
+                app:itemRadius="6dp"
+                android:itemBackground="#9ED8F4"
+                app:lineColor="#9ED8F4"
+                android:layout_marginTop="8dp"
+                android:textColor="@color/black"
+                android:inputType="number"
+                android:textSize="15sp"
+                android:textStyle="bold"
+                />
+                -->
             <Button
                 android:id="@+id/verify"
                 android:layout_width="match_parent"

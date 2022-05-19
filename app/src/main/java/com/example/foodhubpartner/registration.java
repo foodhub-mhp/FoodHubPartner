@@ -5,6 +5,7 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.app.AlertDialog;
 import android.content.Context;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.pm.ActivityInfo;
 import android.graphics.Bitmap;
@@ -93,6 +94,23 @@ public class registration extends AppCompatActivity {
 
             ImageButton camera = view.findViewById(R.id.rdcamera);
             ImageButton gallery = view.findViewById(R.id.rdgallery);
+            imagepicker.setButton(DialogInterface.BUTTON_NEGATIVE, "Cancel", new DialogInterface.OnClickListener() {
+                @Override
+                public void onClick(DialogInterface dialogInterface, int i) {
+                    if(i==DialogInterface.BUTTON_NEGATIVE){
+                        imagepicker.dismiss();
+                    }
+                }
+            });
+
+            imagepicker.setButton(DialogInterface.BUTTON_NEUTRAL, "Remove image", new DialogInterface.OnClickListener() {
+                @Override
+                public void onClick(DialogInterface dialogInterface, int i) {
+                    if(i==DialogInterface.BUTTON_NEUTRAL){
+                        rprofilepic.setImageResource(R.drawable.profile24);
+                    }
+                }
+            });
             imagepicker.show();
             camera.setOnClickListener(new View.OnClickListener() {
                 @Override

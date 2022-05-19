@@ -58,8 +58,8 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_centerInParent="true"
-            android:layout_marginTop="10dp"
             android:layout_marginStart="10dp"
+            android:layout_marginTop="10dp"
             android:layout_marginEnd="10dp"
             android:elevation="20dp"
             app:cardBackgroundColor="@color/white"
@@ -209,6 +209,32 @@
                         android:textColor="@color/black" />
                 </com.google.android.material.textfield.TextInputLayout>
 
+                <com.google.android.material.textfield.TextInputLayout
+                    style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="10dp"
+                    android:layout_marginTop="10dp"
+                    android:layout_marginEnd="10dp"
+                    android:layout_weight="1"
+                    android:elevation="20dp"
+                    android:textColorHint="#626262"
+                    app:boxStrokeColor="#0097EC"
+                    app:endIconMode="password_toggle"
+                    app:startIconDrawable="@drawable/password24"
+                    app:startIconTint="#0097EC">
+
+                    <com.google.android.material.textfield.TextInputEditText
+                        android:id="@+id/rpassword"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:hint="Password"
+                        android:inputType="textPassword"
+                        android:maxLength="8"
+                        android:maxLines="1"
+                        android:textAppearance="@style/TextAppearance.AppCompat.Medium"
+                        android:textColor="@color/black" />
+                </com.google.android.material.textfield.TextInputLayout>
 
                 <com.google.android.material.textfield.TextInputLayout
                     style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
@@ -243,23 +269,24 @@
                     android:layout_marginTop="10dp"
                     android:layout_marginEnd="8dp"
                     android:layout_marginBottom="8dp"
-                    android:backgroundTint="#5E35B1"
+                    android:backgroundTint="#0097EC"
                     android:text="Create"
                     android:textAllCaps="false"
                     android:textColor="@color/white"
                     android:textStyle="bold" />
+
                 <TextView
                     android:id="@+id/rsignin"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="Sign in"
+                    android:layout_gravity="end"
                     android:layout_marginEnd="20dp"
                     android:layout_marginBottom="20dp"
                     android:clickable="true"
                     android:foreground="?attr/selectableItemBackground"
-                    android:layout_gravity="end"
-                    android:textColor="@color/purple_700"
-                    android:textAppearance="@style/TextAppearance.AppCompat.Medium"/>
+                    android:text="Sign in"
+                    android:textAppearance="@style/TextAppearance.AppCompat.Medium"
+                    android:textColor="@color/purple_700" />
             </LinearLayout>
         </androidx.cardview.widget.CardView>
     </LinearLayout>

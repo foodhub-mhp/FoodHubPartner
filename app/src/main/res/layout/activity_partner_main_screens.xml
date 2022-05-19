@@ -4,15 +4,13 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:theme="@style/Theme.actionbar1"
+    android:background="@color/white"
     tools:context=".partner_main_screens">
-
-    <LinearLayout
-        android:id="@+id/fragment_screens"
+    <FrameLayout
+        android:id="@+id/partner_screens"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_above="@id/bottomnavbar"
-        android:orientation="vertical" />
+        android:layout_above="@id/bottomnavbar" />
 
     <com.google.android.material.bottomnavigation.BottomNavigationView
         android:id="@+id/bottomnavbar"
