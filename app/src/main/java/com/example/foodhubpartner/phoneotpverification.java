@@ -164,6 +164,7 @@ public class phoneotpverification extends AppCompatActivity {
                 if(!charSequence.toString().trim().isEmpty()){
                     e6.requestFocus();
                 }
+                
             }
 
             @Override

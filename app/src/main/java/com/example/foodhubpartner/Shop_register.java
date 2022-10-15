@@ -1,9 +1,11 @@
 package com.example.foodhubpartner;
 
+import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.ContentResolver;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.pm.ActivityInfo;
@@ -14,26 +16,51 @@ import android.provider.MediaStore;
 import android.util.Patterns;
 import android.view.LayoutInflater;
 import android.view.View;
+import android.view.WindowManager;
 import android.widget.Button;
 import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
+import android.widget.ProgressBar;
 import android.widget.TimePicker;
 import android.widget.Toast;
 
+import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.OnFailureListener;
+import com.google.android.gms.tasks.OnSuccessListener;
+import com.google.android.gms.tasks.Task;
 import com.google.android.material.textfield.TextInputEditText;
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
+import com.google.firebase.storage.FirebaseStorage;
+import com.google.firebase.storage.StorageReference;
+import com.google.firebase.storage.UploadTask;
 
+import java.util.Random;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 public class Shop_register extends AppCompatActivity {
-    TextInputEditText from_time, to_time,shop_name,shop_address,shop_contact_no,shop_email_id,shop_Upi_Id,shop_Gst_no;
-    Button shop_register;
-    String fromtime="", totime="";
+    TextInputEditText from_time, to_time, shop_name, shop_address, shop_contact_no, shop_email_id, shop_Upi_Id, shop_Gst_no;
+    Button shop_register, shop_location;
+    String fromtime = "", totime = "";
     ImageView shopimage;
     Uri imageUri;
+    ProgressBar progressBar;
     int pic_id = 123;
     int gall_pic_id = 124;
+    public int shop_count;
+
+    //firebase variables
+    FirebaseAuth firebaseAuth;
+    FirebaseDatabase firebaseDatabase;
+    FirebaseStorage firebaseStorage;
+    DatabaseReference reference;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -59,6 +86,13 @@ public class Shop_register extends AppCompatActivity {
         to_time = findViewById(R.id.to_time);
         shopimage = findViewById(R.id.shop_image);
         shop_register = findViewById(R.id.shop_register);
+        shop_location = (Button) findViewById(R.id.shop_location);
+        progressBar = (ProgressBar) findViewById(R.id.progressbar1);
+
+        //initializing firebase variables
+        firebaseAuth = FirebaseAuth.getInstance();
+        firebaseDatabase = FirebaseDatabase.getInstance();
+        firebaseStorage = FirebaseStorage.getInstance();
 
         //From Time Listener
         from_time.setOnClickListener(v -> {
@@ -187,7 +221,7 @@ public class Shop_register extends AppCompatActivity {
             imagepicker.setButton(DialogInterface.BUTTON_NEGATIVE, "Cancel", new DialogInterface.OnClickListener() {
                 @Override
                 public void onClick(DialogInterface dialogInterface, int i) {
-                    if(i==DialogInterface.BUTTON_NEGATIVE){
+                    if (i == DialogInterface.BUTTON_NEGATIVE) {
                         imagepicker.dismiss();
                     }
                 }
@@ -196,7 +230,7 @@ public class Shop_register extends AppCompatActivity {
             imagepicker.setButton(DialogInterface.BUTTON_NEUTRAL, "Remove image", new DialogInterface.OnClickListener() {
                 @Override
                 public void onClick(DialogInterface dialogInterface, int i) {
-                    if(i==DialogInterface.BUTTON_NEUTRAL){
+                    if (i == DialogInterface.BUTTON_NEUTRAL) {
                         shopimage.setImageResource(R.drawable.uploadimage);
                     }
                 }
@@ -222,9 +256,16 @@ public class Shop_register extends AppCompatActivity {
             });
         });
 
+        shop_location.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                startActivityForResult(new Intent(Shop_register.this, MapsActivity.class), 100);
+            }
+        });
+
         //register button listener
-        shop_register.setOnClickListener(v->{
-            String shopname,shopcontactno,shopemailid,shopaddress,shopupiid,shopgstno;
+        shop_register.setOnClickListener(v -> {
+            String shopname, shopcontactno, shopemailid, shopaddress, shopupiid, shopgstno;
 
             shopname = shop_name.getText().toString();
             shopcontactno = shop_contact_no.getText().toString();
@@ -234,9 +275,8 @@ public class Shop_register extends AppCompatActivity {
             shopgstno = shop_Gst_no.getText().toString();
 
             //validating required fields
-            if(!shopname.isEmpty() && !shopcontactno.isEmpty() && !shopemailid.isEmpty() && !shopaddress.isEmpty() && !shopupiid.isEmpty() && !shopgstno.isEmpty() && !fromtime.isEmpty() && !totime.isEmpty())
-            {
-                int flag =0;
+            if (!shopname.isEmpty() && !shopcontactno.isEmpty() && !shopemailid.isEmpty() && !shopaddress.isEmpty() && !shopupiid.isEmpty() && !shopgstno.isEmpty() && !fromtime.isEmpty() && !totime.isEmpty()) {
+                int flag = 0;
                 if (!shopemailid.isEmpty() && Patterns.EMAIL_ADDRESS.matcher(shopemailid).matches()) {
                     flag += 1;
                     System.out.println("email");
@@ -251,11 +291,9 @@ public class Shop_register extends AppCompatActivity {
                     shop_contact_no.setError("Invalid Phone no");
                 }
 
-                if(shopaddress.length()<20)
-                {
+                if (shopaddress.length() < 20) {
                     shop_address.setError("Address must contains atleast 20 characters/letters");
-                }
-                else{
+                } else {
                     flag++;
                     System.out.println("address");
                 }
@@ -263,61 +301,111 @@ public class Shop_register extends AppCompatActivity {
                 Pattern p = Pattern.compile("^(.+)@(.+)$");
                 Matcher m = p.matcher(shopupiid);
                 boolean b = m.matches();
-                if(b)
-                {
-                   flag++;
+                if (b) {
+                    flag++;
                     System.out.println("UPI");
-                }
-                else
-                {
+                } else {
                     shop_Upi_Id.setError("Invalid UPI id");
                 }
                 //validating GST No
                 Pattern p2 = Pattern.compile("^[0-9]{2}[A-Z]{5}[0-9]{4}" + "[A-Z]{1}[1-9A-Z]{1}" + "Z[0-9A-Z]{1}$");
                 Matcher m2 = p2.matcher(shopgstno);
                 boolean b2 = m2.matches();
-                if(b2)
-                {
+                if (b2) {
                     flag++;
                     System.out.println("GST");
-                }
-                else
-                {
+                } else {
                     shop_Gst_no.setError("Invalid GST No");
                 }
-                if(flag==5)
-                    Toast.makeText(this, "Successfully Registered", Toast.LENGTH_SHORT).show();
-            }
-            else{
-                if(shopname.isEmpty())
-                {
+                if (flag == 5) {
+                    progressBar.setVisibility(View.VISIBLE);
+                    //dissable the user interaction when progress bas is vissible
+                    getWindow().setFlags(WindowManager.LayoutParams.FLAG_NOT_TOUCHABLE,
+                            WindowManager.LayoutParams.FLAG_NOT_TOUCHABLE);
+                    reference = FirebaseDatabase.getInstance().getReference("partners").child(firebaseAuth.getCurrentUser().getUid());
+                    reference.addValueEventListener(new ValueEventListener() {
+                        @Override
+                        public void onDataChange(@NonNull DataSnapshot snapshot) {
+                            shop_count = Integer.parseInt(snapshot.child("partner_details").child("shop_count").getValue(String.class));
+                            reference.child("partner_details").child("shop_count").setValue(""+(shop_count+1));
+                            if (imageUri == null) {
+
+                                //if partner didn't upload his/her shop pic then by default we are giving the our android local pic i.e profile24
+                                imageUri = Uri.parse(ContentResolver.SCHEME_ANDROID_RESOURCE +
+                                        "://" + getResources().getResourcePackageName(R.drawable.shop)
+                                        + '/' + getResources().getResourceTypeName(R.drawable.shop) + '/' + getResources().getResourceEntryName(R.drawable.shop));
+                            }
+                            FirebaseStorage storage = FirebaseStorage.getInstance();
+                            StorageReference uploader = storage.getReference("shop_profile_Pics" + new Random().nextInt(50));
+                            uploader.putFile(imageUri)
+                                    .addOnSuccessListener(new OnSuccessListener<UploadTask.TaskSnapshot>() {
+                                        @Override
+                                        public void onSuccess(UploadTask.TaskSnapshot taskSnapshot) {
+                                            uploader.getDownloadUrl().addOnSuccessListener(new OnSuccessListener<Uri>() {
+                                                @Override
+                                                public void onSuccess(Uri uri) {
+                                                    ShopRegistration shopRegistration = new ShopRegistration(fromtime.toString(),totime.toString(),shopname.toString(),shopaddress.toString(),shopcontactno.toString(),shopemailid.toString(),shopupiid.toString(),shopgstno.toString(),uri.toString());
+
+                                                    FirebaseDatabase.getInstance().getReference("partners")
+                                                            .child(FirebaseAuth.getInstance().getCurrentUser().getUid()).child("shops").child("shopName_"+shopname.toString()).setValue(shopRegistration)
+                                                            .addOnCompleteListener(new OnCompleteListener<Void>() {
+                                                                @Override
+                                                                public void onComplete(@NonNull Task<Void> task) {
+                                                                    Toast.makeText(Shop_register.this, "Successfully Registered", Toast.LENGTH_SHORT).show();
+
+                                                                    //enable the user for interaction
+                                                                    getWindow().clearFlags(WindowManager.LayoutParams.FLAG_NOT_TOUCHABLE);
+                                                                    Intent intent = new Intent(Shop_register.this,partner_main_screens.class);
+                                                                    startActivity(intent);
+                                                                    Shop_register.this.finish();
+                                                                }
+                                                            })
+                                                            .addOnFailureListener(new OnFailureListener() {
+                                                                @Override
+                                                                public void onFailure(@NonNull Exception e) {
+                                                                    Toast.makeText(Shop_register.this, "" + e, Toast.LENGTH_SHORT).show();
+                                                                    progressBar.setVisibility(View.GONE);
+                                                                    //enable the user to get interaction
+                                                                    getWindow().clearFlags(WindowManager.LayoutParams.FLAG_NOT_TOUCHABLE);
+                                                                }
+                                                            });
+
+                                                }
+                                            });
+                                        }
+                                    });
+
+                        }
+
+                        @Override
+                        public void onCancelled(@NonNull DatabaseError error) {
+
+                        }
+                    });
+                }
+            } else {
+                if (shopname.isEmpty()) {
                     shop_name.setError("This Field must required");
                 }
-                if(shopcontactno.isEmpty())
-                {
+                if (shopcontactno.isEmpty()) {
                     shop_contact_no.setError("This Field must required");
                 }
-                if(shopemailid.isEmpty())
-                {
+                if (shopemailid.isEmpty()) {
                     shop_email_id.setError("This Field must required");
                 }
-                if(shopaddress.isEmpty())
-                {
+                if (shopaddress.isEmpty()) {
                     shop_address.setError("This Field must required");
                 }
-                if(shopupiid.isEmpty())
-                {
+                if (shopupiid.isEmpty()) {
                     shop_Upi_Id.setError("This Field must required");
                 }
-                if(shopgstno.isEmpty())
-                {
+                if (shopgstno.isEmpty()) {
                     shop_Gst_no.setError("This Field must required");
                 }
-                if(from_time.getText().toString().isEmpty() && to_time.getText().toString().isEmpty()){
+                if (from_time.getText().toString().isEmpty() && to_time.getText().toString().isEmpty()) {
                     from_time.setError("This Field must required");
                     to_time.setError("This Field must required");
-                }
-                else{
+                } else {
                     from_time.setError(null);
                     to_time.setError(null);
                 }
@@ -344,6 +432,10 @@ public class Shop_register extends AppCompatActivity {
             } catch (Exception e) {
                 System.out.println(e);
             }
+        }
+        if (requestCode == 100) {
+            if (data == null) return;
+            shop_address.setText(data.getStringExtra("address"));
         }
     }
 }

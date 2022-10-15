@@ -7,6 +7,8 @@ import android.content.pm.ActivityInfo;
 import android.os.Bundle;
 import android.os.Handler;
 
+import com.google.firebase.auth.FirebaseAuth;
+
 public class MainActivity extends AppCompatActivity {
     Handler h = new Handler();
     @Override
@@ -25,10 +27,28 @@ public class MainActivity extends AppCompatActivity {
         h.postDelayed(new Runnable() {
             @Override
             public void run() {
-                Intent signintent = new Intent(getApplicationContext(),signin.class);
-                startActivity(signintent);
-                finish();
+                if(checkUserLoggedorNot()) {
+                    Intent signintent = new Intent(getApplicationContext(), signin.class);
+                    startActivity(signintent);
+                    finish();
+                }
+                else
+                {
+                    Intent intent = new Intent(MainActivity.this, partner_main_screens.class);
+                    startActivity(intent);
+                    finish();
+                }
             }
         },1000);
+    }
+
+    private boolean checkUserLoggedorNot() {
+        if(FirebaseAuth.getInstance().getCurrentUser() == null)
+        {
+            return true;
+        }
+        else{
+            return false;
+        }
     }
 }

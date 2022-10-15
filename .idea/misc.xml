@@ -10,11 +10,16 @@
         <entry key="..\:/Users/kamala/AndroidStudioProjects/FoodHubPartner/app/src/main/res/drawable/menu_24.xml" value="0.165" />
         <entry key="..\:/Users/kamala/AndroidStudioProjects/FoodHubPartner/app/src/main/res/drawable/rect_shape1.xml" value="0.165" />
         <entry key="..\:/Users/kamala/AndroidStudioProjects/FoodHubPartner/app/src/main/res/drawable/round_back_blue_10_10.xml" value="0.165" />
+        <entry key="..\:/Users/kamala/AndroidStudioProjects/FoodHubPartner/app/src/main/res/drawable/roundbutton.xml" value="0.1655" />
+        <entry key="..\:/Users/kamala/AndroidStudioProjects/FoodHubPartner/app/src/main/res/drawable/shapes.xml" value="0.1655" />
         <entry key="..\:/Users/kamala/AndroidStudioProjects/FoodHubPartner/app/src/main/res/drawable/shop_24.xml" value="0.165" />
+        <entry key="..\:/Users/kamala/AndroidStudioProjects/FoodHubPartner/app/src/main/res/drawable/sv_location_background.xml" value="0.1685" />
         <entry key="..\:/Users/kamala/AndroidStudioProjects/FoodHubPartner/app/src/main/res/layout/activity_demo.xml" value="0.23541666666666666" />
-        <entry key="..\:/Users/kamala/AndroidStudioProjects/FoodHubPartner/app/src/main/res/layout/activity_emaillogin.xml" value="0.2375" />
+        <entry key="..\:/Users/kamala/AndroidStudioProjects/FoodHubPartner/app/src/main/res/layout/activity_emaillogin.xml" value="0.25" />
         <entry key="..\:/Users/kamala/AndroidStudioProjects/FoodHubPartner/app/src/main/res/layout/activity_emailotpverification.xml" value="0.25" />
+        <entry key="..\:/Users/kamala/AndroidStudioProjects/FoodHubPartner/app/src/main/res/layout/activity_forgot_password.xml" value="0.24635416666666668" />
         <entry key="..\:/Users/kamala/AndroidStudioProjects/FoodHubPartner/app/src/main/res/layout/activity_main.xml" value="0.24635416666666668" />
+        <entry key="..\:/Users/kamala/AndroidStudioProjects/FoodHubPartner/app/src/main/res/layout/activity_maps.xml" value="0.24635416666666668" />
         <entry key="..\:/Users/kamala/AndroidStudioProjects/FoodHubPartner/app/src/main/res/layout/activity_mobilelogin.xml" value="0.24615384615384617" />
         <entry key="..\:/Users/kamala/AndroidStudioProjects/FoodHubPartner/app/src/main/res/layout/activity_partner_main_screens.xml" value="0.25" />
         <entry key="..\:/Users/kamala/AndroidStudioProjects/FoodHubPartner/app/src/main/res/layout/activity_phoneotpverification.xml" value="0.25" />

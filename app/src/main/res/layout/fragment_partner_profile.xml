@@ -20,28 +20,32 @@
             android:layout_weight="1"
             android:background="#F3FBFF">
 
-            <androidx.cardview.widget.CardView
+            <!--<androidx.cardview.widget.CardView
                 android:id="@+id/pprofilecard"
                 android:layout_width="100dp"
                 android:layout_height="100dp"
                 android:layout_centerInParent="true"
-                app:cardCornerRadius="100dp">
-
-                <ImageView
+                app:cardCornerRadius="100dp"><ImageView
                     android:id="@+id/pprofilepic"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:layout_gravity="center"
                     android:scaleType="centerCrop"
-                    android:src="@drawable/profile24" />
-
-            </androidx.cardview.widget.CardView>
+                    android:src="@drawable/profile24" /></androidx.cardview.widget.CardView>-->
+            <de.hdodenhof.circleimageview.CircleImageView
+                android:id="@+id/pprofilepic"
+                android:layout_width="100dp"
+                android:layout_height="100dp"
+                android:layout_centerInParent="true"
+                android:layout_gravity="center"
+                android:scaleType="centerCrop"
+                android:src="@drawable/profile24" />
 
             <ImageButton
                 android:id="@+id/pickbutton"
                 android:layout_width="60dp"
                 android:layout_height="60dp"
-                android:layout_below="@id/pprofilecard"
+                android:layout_below="@id/pprofilepic"
                 android:layout_alignParentBottom="true"
                 android:layout_centerHorizontal="true"
                 android:layout_marginTop="-60dp"
@@ -57,6 +61,7 @@
         </RelativeLayout>
 
         <TextView
+            android:id="@+id/partner_username"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:gravity="center"
@@ -78,23 +83,43 @@
                 android:orientation="vertical"
                 android:weightSum="6">
 
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginLeft="30dp"
-                    android:layout_marginTop="30dp"
-                    android:layout_marginBottom="10dp"
-                    android:layout_weight="1"
-                    android:text="Details"
-                    android:textAppearance="@style/TextAppearance.AppCompat.Medium"
-                    android:textColor="@color/black"
-                    android:textStyle="bold" />
-
-                <RelativeLayout
+                <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_weight="1"
-                    android:gravity="center">
+                    android:orientation="horizontal">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="30dp"
+                        android:layout_marginLeft="30dp"
+                        android:layout_marginBottom="10dp"
+                        android:layout_weight="1"
+                        android:text="Details"
+                        android:textAppearance="@style/TextAppearance.AppCompat.Medium"
+                        android:textColor="@color/black"
+                        android:textStyle="bold" />
+
+                    <Button
+                        android:id="@+id/edit_details"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginRight="30dp"
+                        android:layout_marginTop="30dp"
+                        android:layout_marginBottom="10dp"
+                        android:backgroundTint="#9ED8F4"
+                        android:drawableRight="@drawable/edit30"
+                        android:text="Edit"
+                        android:textAllCaps="false"
+                        android:textAppearance="@style/TextAppearance.AppCompat.Medium"
+                        android:textColor="@color/black"
+                        android:textStyle="bold" />
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1">
 
                     <ImageView
                         android:id="@+id/call30"
@@ -109,38 +134,19 @@
                         android:layout_height="wrap_content"
                         android:layout_marginStart="20dp"
                         android:layout_marginEnd="10dp"
-                        android:layout_toLeftOf="@id/pphnoedit"
                         android:layout_toRightOf="@id/call30"
                         android:text="+91 9999999999"
                         android:textAppearance="@style/TextAppearance.AppCompat.Medium"
                         android:textColor="#676767" />
 
-                    <Button
-                        android:id="@+id/pphnoedit"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_alignBaseline="@id/partnerphno"
-                        android:layout_alignParentRight="true"
-                        android:layout_marginStart="20dp"
-                        android:layout_marginTop="20dp"
-                        android:layout_marginEnd="20dp"
-                        android:layout_marginRight="35dp"
-                        android:layout_marginBottom="20dp"
-                        android:backgroundTint="#9ED8F4"
-                        android:drawableRight="@drawable/edit30"
-                        android:gravity="center"
-                        android:text="Edit"
-                        android:textAllCaps="false"
-                        android:textAppearance="@style/TextAppearance.AppCompat.Medium"
-                        android:textStyle="bold" />
-                </RelativeLayout>
 
-                <RelativeLayout
+                </LinearLayout>
+
+                <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="20dp"
-                    android:layout_weight="1"
-                    android:gravity="center">
+                    android:layout_marginTop="10dp"
+                    android:layout_weight="1">
 
                     <ImageView
                         android:id="@+id/email30"
@@ -155,31 +161,34 @@
                         android:layout_height="wrap_content"
                         android:layout_marginStart="20dp"
                         android:layout_marginEnd="10dp"
-                        android:layout_toLeftOf="@id/pemailedit"
                         android:layout_toRightOf="@id/email30"
                         android:text="abc@gmail.com"
                         android:textAppearance="@style/TextAppearance.AppCompat.Medium"
                         android:textColor="#676767" />
 
-                    <Button
-                        android:id="@+id/pemailedit"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_alignBaseline="@id/partneremail"
-                        android:layout_alignParentRight="true"
-                        android:layout_marginStart="20dp"
-                        android:layout_marginTop="20dp"
-                        android:layout_marginEnd="20dp"
-                        android:layout_marginRight="35dp"
-                        android:layout_marginBottom="20dp"
-                        android:backgroundTint="#9ED8F4"
-                        android:drawableRight="@drawable/edit30"
-                        android:gravity="center"
-                        android:text="Edit"
-                        android:textAllCaps="false"
-                        android:textAppearance="@style/TextAppearance.AppCompat.Medium"
-                        android:textStyle="bold" />
-                </RelativeLayout>
+                </LinearLayout>
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="30dp"
+                    android:layout_marginTop="10dp"
+                    android:layout_marginBottom="10dp"
+                    android:layout_weight="1"
+                    android:text="Address"
+                    android:textAppearance="@style/TextAppearance.AppCompat.Medium"
+                    android:textColor="@color/black"
+                    android:textStyle="bold" />
+
+                <TextView
+                    android:id="@+id/partner_address"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="35dp"
+                    android:layout_marginTop="10dp"
+                    android:text="Address"
+                    android:textAppearance="@style/TextAppearance.AppCompat.Medium"
+                    android:textColor="#676767" />
 
                 <TextView
                     android:layout_width="wrap_content"
@@ -200,49 +209,61 @@
                     android:layout_marginTop="10dp"
                     android:layout_weight="1"
                     android:paddingLeft="30dp" />
+
+                <Button
+                    android:id="@+id/partner_logout"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:backgroundTint="#9ED8F4"
+                    android:drawableLeft="@drawable/logout32"
+                    android:gravity="center"
+                    android:text="Logout"
+                    android:textColor="#00897B" />
+
             </LinearLayout>
         </androidx.cardview.widget.CardView>
 
         <TableRow
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_margin="10dp"
             android:layout_gravity="center"
+            android:layout_margin="10dp"
             android:gravity="center">
 
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:clickable="true"
+                android:foreground="?attr/selectableItemBackgroundBorderless"
                 android:text="Help ."
-                android:clickable="true"
-                android:foreground="?attr/selectableItemBackgroundBorderless"
                 android:textAppearance="@style/TextAppearance.AppCompat.Small"
                 android:textColor="#4C4A4A" />
 
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:clickable="true"
+                android:foreground="?attr/selectableItemBackgroundBorderless"
                 android:text=" Privacy ."
-                android:clickable="true"
-                android:foreground="?attr/selectableItemBackgroundBorderless"
                 android:textAppearance="@style/TextAppearance.AppCompat.Small"
                 android:textColor="#4C4A4A" />
 
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:clickable="true"
+                android:foreground="?attr/selectableItemBackgroundBorderless"
                 android:text=" Terms &amp; Condition ."
-                android:clickable="true"
-                android:foreground="?attr/selectableItemBackgroundBorderless"
                 android:textAppearance="@style/TextAppearance.AppCompat.Small"
                 android:textColor="#4C4A4A" />
 
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text=" Support"
                 android:clickable="true"
                 android:foreground="?attr/selectableItemBackground"
+                android:text=" Support"
                 android:textAppearance="@style/TextAppearance.AppCompat.Small"
                 android:textColor="#4C4A4A" />
         </TableRow>
